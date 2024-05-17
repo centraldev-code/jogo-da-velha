@@ -1,20 +1,25 @@
 let play = true;
+let list_paly = []
 let list_play_red = []
 let list_play_blue = []
 const dados_vitory = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9],[1,5,9], [3,5,7]]
 
 function clickButton(params) {
-    const element = document.getElementById("item"+params)
-    if (play) {
-        element.style.backgroundColor = "red"
-        list_play_red.push(params)
-        validate("red")
-    } else {
-        element.style.backgroundColor = "blue"
-        list_play_blue.push(params)
-        validate("blue")
+
+    if (!list_paly.includes(params)) {    
+        const element = document.getElementById("item"+params)
+        if (play) {
+            element.style.backgroundColor = "red"
+            list_play_red.push(params)
+            validate("red")
+        } else {
+            element.style.backgroundColor = "blue"
+            list_play_blue.push(params)
+            validate("blue")
+        }
+        list_paly.push(params);
+        play = !play;
     }
-    play = !play;
 }
 
 function validate(player) {
@@ -46,6 +51,7 @@ function validate(player) {
             for (let i = 0; i < list.length; i++) {
                 const element = document.getElementById("item"+list[i])
                 element.style.backgroundColor = "green"
+                //Abrir Modal
                 
             }
         }
