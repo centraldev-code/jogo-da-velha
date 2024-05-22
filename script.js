@@ -1,7 +1,10 @@
 let play = true;
 let list_paly = []
-let list_play_red = []
-let list_play_blue = []
+let list_play_1 = []
+let list_play_2 = []
+var Modal = new bootstrap.Modal(document.getElementById('myModal'), {
+    keyboard: false
+  });
 const dados_vitory = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9],[1,5,9], [3,5,7]]
 
 function clickButton(params) {
@@ -9,13 +12,13 @@ function clickButton(params) {
     if (!list_paly.includes(params)) {    
         const element = document.getElementById("item"+params)
         if (play) {
-            element.style.backgroundColor = "red"
-            list_play_red.push(params)
-            validate("red")
+            element.style.backgroundImage = "url(img/O.png)"
+            list_play_1.push(params)
+            validate(1)
         } else {
-            element.style.backgroundColor = "blue"
-            list_play_blue.push(params)
-            validate("blue")
+            element.style.backgroundImage = "url(img/X.png)"
+            list_play_2.push(params)
+            validate(2)
         }
         list_paly.push(params);
         play = !play;
@@ -24,14 +27,14 @@ function clickButton(params) {
 
 function validate(player) {
 
-    if (player == "red") {
-        if (list_play_red.length >= 3) {
-            console.log(list_play_red)
+    if (player == 1) {
+        if (list_play_1.length >= 3) {
+            console.log(list_play_1)
         }
         
     } else {
-        if (list_play_blue.length >= 3) {
-            console.log(list_play_blue)
+        if (list_play_2.length >= 3) {
+            console.log(list_play_2)
         }
     }
     for (let i = 0; i < dados_vitory.length; i++) {
@@ -40,7 +43,7 @@ function validate(player) {
         let value = 0; 
         for (let i = 0; i < list.length; i++) {
             
-            if (list_play_red.includes(list[i])) {
+            if (list_play_1.includes(list[i])) {
                 value += 1
             }
             
@@ -52,12 +55,19 @@ function validate(player) {
                 const element = document.getElementById("item"+list[i])
                 element.style.backgroundColor = "green"
                 //Abrir Modal
+                list_paly = [1,2,3,4,5,6,7,8,9];
+
+                  Modal.show();
                 
             }
         }
 
         
     }
+}
+
+function closed() {
+    Modal.hide();
 }
 
 

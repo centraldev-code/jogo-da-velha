@@ -55,6 +55,9 @@ body {
     border-color: black;
     border-style: solid;
     cursor: pointer;
+   /* background-image: url("img/O.png"); */
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .border1 {
     border-width: 0px 2px 2px 0px;
